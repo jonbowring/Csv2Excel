@@ -5,7 +5,7 @@ A java command line program that converts one or more csv files into an Excel sp
 Author: Jonathon Bowring
 Created Date: 02/03/2016
 
-# Usage
+# Usage 
 Usage: Csv2Excel -t [xlsx|xls] -o [outfile] -d [delimiter] -i [infile1:infile2:infile3...]
 
 # Example Usage (Pipe Delimited CSVs)
