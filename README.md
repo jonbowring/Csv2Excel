@@ -8,7 +8,7 @@ Jonathon Bowring
 02/03/2016
 
 # Usage 
-Usage: Csv2Excel -t [xlsx|xls] -o [outfile] -d [delimiter] -i [infile1:infile2:infile3...]
+Usage: Csv2Excel -t [xlsx|xls] -o [outfile] -d [delimiter] -e [input encoding] -i [infile1:infile2:infile3...]
 
 # Example Usage (Pipe Delimited CSVs)
 Csv2Excel -t xlsx -o myoutfile -d \\| -i mysheet1.txt:mysheet2.txt:mysheet3.txt
