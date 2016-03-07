@@ -7,8 +7,10 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 // Import the necessary Native libraries
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 
 public class Driver {
 
@@ -21,13 +23,13 @@ public class Driver {
 		Cell cell;
 		int rownum;
 		FileOutputStream outstream;
-		String extension = "", delim = "", infiles = "", infile = "", outfile = "", line = "", dirchar = "", sheetname = "", usage = "Usage: Csv2Excel -t [xlsx|xls] -o [outfile] -d [delimiter] -i [infile1:infile2:infile3...]";
+		String extension = "", delim = "", infiles = "", infile = "", outfile = "", line = "", dirchar = "", sheetname = "", encoding = "", usage = "Usage: Csv2Excel -t [xlsx|xls] -o [outfile] -d [delimiter] -i [infile1:infile2:infile3...]";
 		String[] data, os, files;
 		BufferedReader br = null;
 		
 		try {
 			// Check enough arguments were supplied
-			if(args.length < 8) {
+			if(args.length < 10) {
 				throw new Exception(usage);
 			}
 			
@@ -52,6 +54,11 @@ public class Driver {
 				else if(args[a].equals("-i")) {
 					a++;
 					infiles = args[a];
+				}
+				// Else if -e option assign the encoding for the input file
+				else if(args[a].equals("-e")) {
+					a++;
+					encoding = args[a];
 				}
 			}
 			
@@ -85,7 +92,8 @@ public class Driver {
 				
 				// Read the input file
 				infile = StringEscapeUtils.escapeJava(files[k]);
-				br = new BufferedReader(new FileReader(infile));
+				// br = new BufferedReader(new FileReader(infile));
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(infile), encoding));
 				
 				// Create the new worksheet
 				sheetname = infile.substring(infile.lastIndexOf(dirchar) + 1, infile.lastIndexOf('.'));
